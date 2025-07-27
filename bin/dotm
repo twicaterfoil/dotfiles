@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# `dotm` manages dotfiles.
+
+set -e
+
+parentDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
+dotfilesDirectory="$(cd "$( dirname "$parentDirectory" )" && pwd -P)"
+
+displayUsageAndExit() {
+    echo "dotm -- dotfiles management"
+    echo ""
+    echo "Usage: dotm [options]"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help    Show this help message and exit"
+    exit
+}
+
+while test $# -gt 0; do
+    case "$1" in
+        "-h"|"--help")
+            displayUsageAndExit
+            ;;
+        *)
+            echo "Invalid option: $1"
+            displayUsageAndExit
+            ;;
+    esac
+    shift
+done
+
+export ZSH=$HOME/.dotfiles
+
+## BEGIN UPDATE
+
+# Update dotfiles themselves
+echo "Syncing with GitHub..."
+
+echo "› git pull"
+git -C $ZSH pull
+
+# Install homebrew
+$ZSH/homebrew/install.sh 2>&1

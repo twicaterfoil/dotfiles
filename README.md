@@ -3,9 +3,14 @@ Somewhere along the way, i stumbled upon [this page](https://dotfiles.github.io)
 
 This repo is largely based on [@holman's dotfiles](https://github.com/holman/dotfiles) with stuff added, removed, and tweaked for what works well for me.
 
-At the moment, configuration and installation is self contained in the `/script` directory, though this may change for a different dotfile management setup.
+## Layout
+- Topic folders organize special dotfiles
+    - `path.sh` files append their contents to `$PATH`
+    - `install.sh` files install their topic
+    - `.dotfile` files are symlinked to `$HOME`
+- `/bin` folder is automatically added to $PATH
 
 ## Installing
 
-To just update everything locally from what's in this repo, run the root level `dot-install` script from this repo.
+To just update everything locally from what's in this repo, run `bin/dotm` from this repo.
 
