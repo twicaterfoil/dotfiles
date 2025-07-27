@@ -7,5 +7,5 @@ At the moment, configuration and installation is self contained in the `/script`
 
 ## Installing
 
-To just update everything locally from what's in this repo, run the root level `install` script from this repo.
+To just update everything locally from what's in this repo, run the root level `dot-install` script from this repo.
 
