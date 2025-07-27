@@ -35,10 +35,21 @@ export ZSH=$HOME/.dotfiles
 ## BEGIN UPDATE
 
 # Update dotfiles themselves
-echo "Syncing with GitHub..."
+echo "==> Syncing with GitHub..."
 
-echo "› git pull"
-git -C $ZSH pull
+# TODO: Uncomment
+# echo "› git pull"
+# git -C $ZSH pull
 
 # Install homebrew
 $ZSH/homebrew/install.sh 2>&1
+
+# Process Path
+echo "==> Processing path files"
+
+
+# Install everything
+echo "==> Running installers"
+
+echo "› $ZSH/script/install"
+$ZSH/script/install

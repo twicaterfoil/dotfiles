@@ -1,14 +1,23 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
-# Also graciously borrowed from @holman's dotfiles repo.
 # Run all dotfiles installers.
+
+# Anything dotm takes care of automatically (things that other things depend on)
+exclusions=("homebrew")
 
 set -e
 
 cd "$(dirname $0)"/..
+pwd
 
 echo "› brew bundle"
 brew bundle
 
-# find the installers and run them iteratively
-find . -name install.sh | while read installer ; do sh -c "${installer}" ; done
+prune_expr=()
+for dir in "${exclusions[@]}"; do
+    prune_expr+=( -path "./$dir" -prune -o )
+done
+
+find . "${prune_expr[@]}" -name install.sh -print | while read -r installer; do
+    sh -c "${installer}"
+done
