@@ -21,14 +21,12 @@ config_files=(${config_files:#*/install.sh})
 # load the path files first
 for file in ${(M)config_files:#*/path.sh}
 do
-  echo "Processing $file"
   source $file
 done
 
 # load the other files (everything but the path and completion files)
 for file in ${${config_files:#*/path.sh}:#*/completion.sh}
 do
-  echo "Processing $file"
   source $file
 done
 
