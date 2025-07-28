@@ -7,7 +7,7 @@ DOTFILES_ROOT=$(pwd -P)
 set -e
 
 setup_gitconfig () {
-  if ! [ -f git/gitconfig.local.symlink ]
+  if ! [ -f git/gitconfig.local.dotfile ]
   then
     info 'setup gitconfig'
 

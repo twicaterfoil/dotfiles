@@ -29,6 +29,12 @@ do
   source $file
 done
 
+# link dotfiles bin
+export PATH=$ZSH/bin:$PATH
+
+# remove dupes from PATH
+typeset -U PATH
+
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
