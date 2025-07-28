@@ -1,2 +1,6 @@
 alias reload='. ~/.zshrc'
 alias prettypath='echo "$PATH" | tr ':' '\n''
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
