@@ -1,4 +1,5 @@
 # shortcut to this dotfiles path is $ZSH
+
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
@@ -14,18 +15,20 @@ fi
 
 # all of our zsh files
 typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+config_files=($ZSH/**/*.sh)
+config_files=(${config_files:#*/install.sh})
 
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}
+# load the path files first
+for file in ${(M)config_files:#*/path.sh}
 do
   echo "Processing $file"
   source $file
 done
 
-# load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+# load the other files (everything but the path and completion files)
+for file in ${${config_files:#*/path.sh}:#*/completion.sh}
 do
+  echo "Processing $file"
   source $file
 done
 
@@ -40,7 +43,7 @@ autoload -U compinit
 compinit
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
+for file in ${(M)config_files:#*/completion.sh}
 do
   source $file
 done
